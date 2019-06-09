@@ -1,8 +1,9 @@
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /*
-    Parking log
+    Parking lot
     use this parking lot to see
     for some of the terms in documentation
     that will be explained in the lower part of the class:
@@ -10,7 +11,8 @@ import java.util.function.Consumer;
     Pure functions:
     Side - effects:
     Higher order functions:
-    Method Reference Instance
+    Method Reference Instance:
+    Lazy:
  */
 
 
@@ -24,7 +26,13 @@ public class Main {
     private static Consumer<String> printer = System.out::println;
 
     public static void yellOut (String words) {
+        Objects.requireNonNull(words, () -> "Created issue " + Main.createIssue());
         System.out.printf("%s!!!! %n", words.toUpperCase());
+    }
+
+    public static String createIssue() {
+        System.out.println("Some external api call to bug tracker");
+        return "ABC-1234";
     }
 
     public static void main(String[] args) {
@@ -217,5 +225,15 @@ public class Main {
         // This signatures are of called as function shapes
 
         ingredients.forEach(Main::yellOut);
+
+        /**
+         * Please visit
+         * https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html
+         * for more information on the java.util.function package
+         *
+         * Lets see Supplier
+         * Supplier represents a supplier of results.
+         */
+        Main.yellOut(null);
     }
 }
