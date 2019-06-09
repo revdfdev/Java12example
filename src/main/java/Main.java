@@ -13,6 +13,8 @@ import java.util.function.Consumer;
     Higher order functions:
     Method Reference Instance:
     Lazy:
+    Functional Composition:
+
  */
 
 
@@ -235,5 +237,24 @@ public class Main {
          * Supplier represents a supplier of results.
          */
         Main.yellOut(null);
+
+
+        // Next function shape is Function
+        // Represents a function that accepts one
+        // arguments and reproduces a result.
+        // Function(Functional interface) takes single argment and returns
+        // a value
+        // This is great for transformation
+
+
+        // Next function shape is Predicate
+        // Accepts a parameter and returns
+        // a boolean value
+        // helpful for filter values.
+
+
+        // The amount of parameter a function accepts
+        // is referred to as arity
+        //
     }
 }
