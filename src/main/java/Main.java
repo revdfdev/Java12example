@@ -7,9 +7,10 @@ import java.util.function.Consumer;
     for some of the terms in documentation
     that will be explained in the lower part of the class:
 
-    Pure:
+    Pure functions:
     Side - effects:
     Higher order functions:
+    Method Reference Instance
  */
 
 
@@ -20,7 +21,12 @@ public class Main {
      * So prior to java 8 I would do the following.
      */
 
-    static Consumer<String> printer = ingredient -> System.out.println(ingredient);
+    private static Consumer<String> printer = System.out::println;
+
+    public static void yellOut (String words) {
+        System.out.printf("%s!!!! %n", words.toUpperCase());
+    }
+
     public static void main(String[] args) {
         /*
          * I would list out all the ingredients in a cake.
@@ -173,6 +179,43 @@ public class Main {
 
 
         // Lambdas can be more concise with method reference
+        /**
+         * In the forEach function the parameter consumer only
+         * accepts a string as a parameter
+         * and returns nothing or you may say the function's
+         * return type is void.
+         *
+         *
+         * Using method reference , you can just pass the string
+         * that is coming from the parameter and pass it on to
+         * the println method.
+         *
+         * Like telling the forEach method take every ingredient in
+         * the cake and pass it on to the println method
+         *
+         * So Method reference means is this is referring to
+         * instance method on the static out instance object of
+         * System.
+         *
+         * The signature is exactly what the forEach method is looking for
+         *
+         * Explaining System.out.println:
+         * out on System is static but println is an instance method
+         * to the print stream
+         */
+        ingredients.forEach(System.out::println);
 
+        //Example
+        Main.yellOut("But I want that cake");
+
+        // You can see that
+        // How the syntax is exactly the same
+        // It was able to infer what context the call
+        // thinks through
+        // As long as the lamdba function matches the expected
+        // signature, we can use it as an argument
+        // This signatures are of called as function shapes
+
+        ingredients.forEach(Main::yellOut);
     }
 }
